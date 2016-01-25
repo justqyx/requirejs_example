@@ -28,7 +28,9 @@ gulp.task('serve', () => {
 });
 
 gulp.task('build', () => {
-    requirejs.optimize(buildConfig, (buildResponse) => {
+    requirejs.optimize(buildConfig, () => {
         Logger.green("--- requirejs optimize done. ---");
+    }, function(err) {
+        Logger.error(err);
     });
 });
