@@ -3,6 +3,9 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var connect = require('gulp-connect');
+var requirejs = require('requirejs');
+
+var buildConfig = require('./app.build.js');
 
 var Logger = {
     green: (text) => {
@@ -21,5 +24,11 @@ gulp.task('serve', () => {
     $.connect.server({
         root: ['src'],
         port: 9201
+    });
+});
+
+gulp.task('build', () => {
+    requirejs.optimize(buildConfig, (buildResponse) => {
+        Logger.green("--- requirejs optimize done. ---");
     });
 });
