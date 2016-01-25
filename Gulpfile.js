@@ -13,7 +13,14 @@ var Logger = {
     }
 };
 
-
 gulp.task('default', () => {
     Logger.green("--- Hello, world. ---");
+});
+
+gulp.task('serve', () => {
+    $.connect.server({
+        root: ['src'],
+        port: 9201,
+        fallback: 'index.html'
+    });
 });
