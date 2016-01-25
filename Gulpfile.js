@@ -20,7 +20,6 @@ gulp.task('default', () => {
 gulp.task('serve', () => {
     $.connect.server({
         root: ['src'],
-        port: 9201,
-        fallback: 'index.html'
+        port: 9201
     });
 });
