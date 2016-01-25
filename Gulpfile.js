@@ -3,9 +3,13 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var connect = require('gulp-connect');
-var requirejs = require('requirejs');
 
+// 官网获取得到的
+var requirejs = require('requirejs');
 var buildConfig = require('./app.build.js');
+
+// 社区获取到的
+var amdOptimize = require('amd-optimize');
 
 var Logger = {
     green: (text) => {
@@ -27,10 +31,27 @@ gulp.task('serve', () => {
     });
 });
 
-gulp.task('build', () => {
+gulp.task('rjs:build', () => {
     requirejs.optimize(buildConfig, () => {
         Logger.green("--- requirejs optimize done. ---");
     }, function(err) {
         Logger.error(err);
     });
+});
+
+// 始终逃不过两处配置
+gulp.task('build', () => {
+    gulp.src('src/scripts/**/*.js')
+        .pipe(amdOptimize('index', {
+            paths: {
+                'jquery': 'src/scripts/bower_components/jquery/dist/jquery',
+                'underscore': 'src/scripts/bower_components/underscore/underscore',
+                'backbone': 'src/scripts/bower_components/backbone/backbone'
+            },
+            findNestedDependencies: true,
+        }))
+        .pipe($.debug({ title: 'amd-optimize' }))
+        .pipe($.concat('index.min.js'))
+        .pipe($.uglify())
+        .pipe(gulp.dest('dist/scripts'));
 });
