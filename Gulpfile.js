@@ -31,27 +31,25 @@ gulp.task('serve', () => {
     });
 });
 
-gulp.task('rjs:build', () => {
-    requirejs.optimize(buildConfig, () => {
-        Logger.green("--- requirejs optimize done. ---");
-    }, function(err) {
-        Logger.error(err);
+gulp.task('serve:prod', () => {
+    $.connect.server({
+        root: ['dist'],
+        port: 9202
     });
 });
 
-// 始终逃不过两处配置
-gulp.task('build', () => {
-    gulp.src('src/scripts/**/*.js')
-        .pipe(amdOptimize('index', {
-            paths: {
-                'jquery': 'src/scripts/bower_components/jquery/dist/jquery',
-                'underscore': 'src/scripts/bower_components/underscore/underscore',
-                'backbone': 'src/scripts/bower_components/backbone/backbone'
-            },
-            findNestedDependencies: true,
-        }))
-        .pipe($.debug({ title: 'amd-optimize' }))
-        .pipe($.concat('index.min.js'))
-        .pipe($.uglify())
-        .pipe(gulp.dest('dist/scripts'));
-});
+// gulp.task('build', () => {
+//     gulp.src('src/scripts/**/*.js')
+//         .pipe(amdOptimize('index', {
+//             paths: {
+//                 'jquery': 'src/scripts/bower_components/jquery/dist/jquery',
+//                 'underscore': 'src/scripts/bower_components/underscore/underscore',
+//                 'backbone': 'src/scripts/bower_components/backbone/backbone'
+//             },
+//             findNestedDependencies: true,
+//         }))
+//         .pipe($.debug({ title: 'amd-optimize' }))
+//         .pipe($.concat('index.min.js'))
+//         .pipe($.uglify())
+//         .pipe(gulp.dest('dist/scripts'));
+// });

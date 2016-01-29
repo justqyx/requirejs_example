@@ -3,7 +3,8 @@ require(['require.config'], function() {
 
     // require.config.js 加载完毕，整个程序的逻辑入口就在这里。
     require([
-        'helper/util',
+        './helper/util',
+        'core',
         'underscore'
     ], function(util) {
         util.sayHello();

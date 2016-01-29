@@ -2,9 +2,9 @@
   "name": "requirejs_example",
   "version": "1.0.0",
   "description": "requirejs example",
-  "main": "scripts/require.js",
+  "main": "src/scripts/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "node r.js -o app.build.js"
   },
   "keywords": [
     "requirejs",

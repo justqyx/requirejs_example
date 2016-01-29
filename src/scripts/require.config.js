@@ -11,9 +11,10 @@ require.config({
 
     // Path mappings for module names not found directory under baseUrl.
     paths: {
-        'jquery': bowerPrefix + 'jquery/dist/jquery',
-        'underscore': bowerPrefix + 'underscore/underscore',
-        'backbone': bowerPrefix + 'backbone/backbone'
+        'core': 'core/main',
+        'jquery': 'bower_components/jquery/dist/jquery',
+        'underscore': 'bower_components/underscore/underscore',
+        'backbone': 'bower_components/backbone/backbone'
     },
 
     // 这个配置不明白
@@ -44,7 +45,15 @@ require.config({
     // config: {
     // },
 
-    // packages: [],
+    // packages: [
+    // ],
+
+    modules: [
+        {
+            name: 'index',
+            include: ['index']
+        }
+    ]
 
     // deps: [],
     // callback: function() {
