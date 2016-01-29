@@ -23,3 +23,7 @@ open your browser with `http://localhost:9201`
 
 - [RequireJS Optimization](http://requirejs.org/docs/optimization.html)
 - [RequireJS Build Config Example](https://github.com/jrburke/r.js/blob/master/build/example.build.js)
+
+## Last
+
+I +hate+ RequireJS, and Webpack hooray.
